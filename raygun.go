@@ -9,7 +9,7 @@ import (
 )
 
 type raygunHook struct {
-	client *goraygun.Client
+	Client *goraygun.Client
 }
 
 func NewHook(Endpoint string, ApiKey string, Enabled bool) *raygunHook {
@@ -23,7 +23,7 @@ func NewHook(Endpoint string, ApiKey string, Enabled bool) *raygunHook {
 
 func (hook *raygunHook) Fire(logEntry *logrus.Entry) error {
 	// Start with a copy of the default entry
-	raygunEntry := hook.client.Entry
+	raygunEntry := hook.Client.Entry
 
 	if request, ok := logEntry.Data["request"]; ok {
 		raygunEntry.Details.Request.Populate(*(request.(*http.Request)))
@@ -36,7 +36,7 @@ func (hook *raygunHook) Fire(logEntry *logrus.Entry) error {
 		reportErr = errors.New(logEntry.Message)
 	}
 
-	hook.client.Report(reportErr, raygunEntry)
+	hook.Client.Report(reportErr, raygunEntry)
 
 	return nil
 }
