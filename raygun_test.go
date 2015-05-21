@@ -38,7 +38,7 @@ func TestLogEntryMessageReceived(t *testing.T) {
 	ts := startRaygunServer(t)
 	defer ts.Close()
 
-	hook := NewHook(ts.URL, testAPIKey, true)
+	hook := NewHook(ts.URL, testAPIKey, "test")
 	log.Hooks.Add(hook)
 
 	log.Error(expectedMsg)
@@ -62,7 +62,7 @@ func TestLogEntryWithErrorReceived(t *testing.T) {
 	ts := startRaygunServer(t)
 	defer ts.Close()
 
-	hook := NewHook(ts.URL, testAPIKey, true)
+	hook := NewHook(ts.URL, testAPIKey, "test")
 	log.Hooks.Add(hook)
 
 	log.WithFields(logrus.Fields{

@@ -12,11 +12,11 @@ type raygunHook struct {
 	Client *goraygun.Client
 }
 
-func NewHook(Endpoint string, ApiKey string, Enabled bool) *raygunHook {
+func NewHook(endpoint string, apiKey string, env string) *raygunHook {
 	client := goraygun.Init(goraygun.Settings{
-		ApiKey:   ApiKey,
-		Endpoint: Endpoint,
-		Enabled:  Enabled,
+		ApiKey:      apiKey,
+		Endpoint:    endpoint,
+		Environment: env,
 	}, goraygun.Entry{})
 	return &raygunHook{client}
 }

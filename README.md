@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-  log.AddHook(raygun.NewHook("https://api.raygun.io/entries", "yourApiKey", true))
+  log.AddHook(raygun.NewHook("https://api.raygun.io/entries", "yourApiKey", "development"))
 }
 ```
 
